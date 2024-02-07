@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "385414826377",
+    "project_id": "kudosim-89e57",
+    "storage_bucket": "kudosim-89e57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385414826377:android:e381723e360ab75af73958",
+        "android_client_info": {
+          "package_name": "com.example.kudo_sim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "385414826377-qfgoqms7jpuquf85rd832o24b2657qgb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kudo_sim",
+            "certificate_hash": "116ac33f1cd5440ed31d2905ce861e9389f9d307"
+          }
+        },
+        {
+          "client_id": "385414826377-733ndc5vcktjeno81lnapbhja67l8uqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArX5OT-PrCVeQz5dRmIOHOnRjDOKwt4lA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "385414826377-733ndc5vcktjeno81lnapbhja67l8uqe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
