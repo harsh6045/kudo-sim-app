@@ -40,13 +40,15 @@ class HomePage extends StatelessWidget {
         return Scaffold(
           body: Center(child: bottomNavScreen.elementAt(state.tabIndex)),
           bottomNavigationBar: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(16.0),
             child: Container(
+              width: MediaQuery.of(context).size.width/0.7,
               decoration: BoxDecoration(
                 color: Colors.lime,
                 borderRadius: BorderRadius.circular(21),
               ),
               child: BottomNavigationBar(
+
                 backgroundColor: Colors.deepPurple,
                 items: bottomNavItems,
                 currentIndex: state.tabIndex,

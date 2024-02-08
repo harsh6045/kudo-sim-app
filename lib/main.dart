@@ -1,11 +1,18 @@
 import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kudo_sim/storepages/homepage.dart';
 
+import 'firebase/firebase_options.dart';
 import 'loginpages/signup_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    name: 'name-here',
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     BlocProvider(
       create: (context) => LandingPageBloc(),

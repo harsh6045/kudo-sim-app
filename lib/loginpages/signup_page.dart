@@ -18,6 +18,64 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  bool _isSigning = false;
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+
+  void _signUpWithGoogle() async {
+    setState(() {
+      _isSigning = true;
+    });
+
+    User? user = await signInWithGoogle();
+
+    setState(() {
+      _isSigning = false;
+    });
+
+    if (user != null) {
+      showToast(message: "Welcome to the app.");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+      showToast(message: "User is successfully signed in");
+    } else {
+      showToast(message: "Some error occurred");
+    }
+  }
+  Future<User?> signInWithGoogle() async {
+    try {
+      // Trigger Google Sign In
+      final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+
+      if (googleSignInAccount == null) {
+        // User canceled Google Sign In
+        return null;
+      }
+
+      // Obtain GoogleSignInAuthentication object
+      final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
+
+      // Create GoogleSignInCredential using the obtained authentication
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+
+      // Sign in with Google credential
+      UserCredential authResult = await _auth.signInWithCredential(credential);
+
+      // Return the user
+      return authResult.user;
+    } catch (e) {
+      print('Error signing in with Google: $e');
+      // Handle the error as needed
+      return null;
+    }
+  }
+
   ValueNotifier userCredential = ValueNotifier('');
   // text editing controllers
   final usernameController = TextEditingController();
@@ -107,9 +165,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         onTap: () {
                           showToast(message: "Welcome to the app.");
                           Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
-                          );
+                              context,
+                              MaterialPageRoute(builder: (context) => HomePage()));
                         },
                         child: Container(
                           margin: const EdgeInsets.only(bottom: 25,top: 25),
@@ -176,14 +233,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                         InkWell(
-                            onTap: ()  async {
-                              showToast(message: "Login Successful");
-                              userCredential.value = await signInWithGoogle();
-                              if (userCredential.value != null){
-                                print("******************");
-                                print(userCredential.value.user!.email);
-                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage(),));
-                              }
+                            onTap: ()   {
+                               _signUpWithGoogle();
                             },
                             child: Image.asset("assets/images/google.png")),
                         SizedBox(
@@ -206,30 +257,3 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 }
 
-Future<dynamic> signInWithGoogle() async {
-  try {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    final GoogleSignInAuthentication? googleAuth =
-    await googleUser?.authentication;
-
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    return await FirebaseAuth.instance.signInWithCredential(credential);
-  } on Exception catch (e) {
-    // TODO
-    print('exception->$e');
-  }
-}
-
-Future<bool> signOutFromGoogle() async {
-  try {
-    await FirebaseAuth.instance.signOut();
-    return true;
-  } on Exception catch (_) {
-    return false;
-  }
-}
