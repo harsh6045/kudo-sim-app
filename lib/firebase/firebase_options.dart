@@ -53,10 +53,10 @@ class DefaultFirebaseOptions {
   );*/
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB_JcejN4ILRaK7Y7GZH9XoneKcDCkXu3E',
-    appId: '1:762556301185:android:274c87744ce7a06ca7b280',
+    apiKey: 'AIzaSyCTucUU_N_bbikGwVAn9xL0Yrfqh2A0WAE ',
+    appId: '1:385414826377:android:e381723e360ab75af73958',
     messagingSenderId: '760662597485',
-    projectId: 'sdp-ytbot',
+    projectId: 'kudosim-89e57',
     storageBucket: 'sdp-2-dc684.appspot.com',
   );
 

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:kudo_sim/Utils/validator_helper.dart';
 import 'package:kudo_sim/components/toast.dart';
 import 'package:kudo_sim/loginpages/resetpass_page.dart';
 import 'package:kudo_sim/loginpages/welcomepage.dart';
@@ -20,6 +21,8 @@ class _SignUpPageState extends State<SignUpPage> {
   ValueNotifier userCredential = ValueNotifier('');
   // text editing controllers
   final usernameController = TextEditingController();
+
+  final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
 
@@ -67,26 +70,32 @@ class _SignUpPageState extends State<SignUpPage> {
                   const SizedBox(height: 40),
 
                   // username textfield
-                  MyTextField(
+                  CustomTextField(
                     controller: usernameController,
                     hintText: 'Full Name',
                     obscureText: true,
+                    keyboardType: TextInputType.text,
+                    validator: ValidationHelper.validateName,
                   ),
 
                   const SizedBox(height: 10),
 
-                  MyTextField(
-                    controller: passwordController,
+                  CustomTextField(
+                    controller: emailController,
                     hintText: 'Email',
                     obscureText: true,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: ValidationHelper.validateEmail,
                   ),
                   const SizedBox(height: 10),
 
                   // password textfield
-                  MyTextField(
+                  CustomTextField(
                     controller: passwordController,
                     hintText: 'Password',
                     obscureText: true,
+                    keyboardType: TextInputType.visiblePassword,
+                    validator: ValidationHelper.validatePassword,
                   ),
 
                   const SizedBox(height: 10),

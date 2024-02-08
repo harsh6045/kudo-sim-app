@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kudo_sim/Utils/validator_helper.dart';
 import 'package:kudo_sim/loginpages/resetpass_page.dart';
 import 'package:kudo_sim/loginpages/signup_page.dart';
 import 'package:kudo_sim/storepages/homepage.dart';
@@ -17,6 +18,7 @@ class _WelcomePageState extends State<WelcomePage> {
   // text editing controllers
   final usernameController = TextEditingController();
 
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
 
@@ -61,18 +63,22 @@ class _WelcomePageState extends State<WelcomePage> {
 
                 const SizedBox(height: 10),
 
-                MyTextField(
-                  controller: passwordController,
+                CustomTextField(
+                  controller: emailController,
                   hintText: 'Email',
                   obscureText: true,
+                  validator: ValidationHelper.validateEmail,
+                  keyboardType: TextInputType.emailAddress,
                 ),
 
                 const SizedBox(height: 10),
 
-                MyTextField(
+                CustomTextField(
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
+                  keyboardType: TextInputType.visiblePassword,
+                  validator: ValidationHelper.validatePassword,
                 ),
                 const SizedBox(height: 10),
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kudo_sim/loginpages/resetpass_page2.dart';
 import 'package:kudo_sim/loginpages/welcomepage.dart';
 
+import '../Utils/validator_helper.dart';
 import '../components/my_textfield.dart';
 
 class ResetPass extends StatefulWidget {
@@ -61,10 +63,12 @@ class _ResetPassState extends State<ResetPass> {
 
                 const SizedBox(height: 10),
 
-                MyTextField(
+                CustomTextField(
                   controller: passwordController,
                   hintText: 'Email',
                   obscureText: true,
+                  keyboardType: TextInputType.visiblePassword,
+                  validator: ValidationHelper.validatePassword,
                 ),
                 const SizedBox(height: 10),
 
@@ -116,10 +120,15 @@ class _ResetPassState extends State<ResetPass> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("Forgot your email ? ",style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600
-                    ),),
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResetPassWord2Page(onTap: () {},),));
+                      },
+                      child: Text("Forgot your email ? ",style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600
+                      ),),
+                    ),
 
                   ],
                 ),

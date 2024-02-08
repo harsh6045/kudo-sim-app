@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
 
-class MyTextField extends StatelessWidget {
+class CustomTextField extends StatelessWidget {
   final controller;
   final String hintText;
   final bool obscureText;
+  final TextInputType keyboardType;
+  final String? Function(String?)? validator; // Validator function
 
-  const MyTextField({
+  const CustomTextField({
     super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
+    required this.keyboardType,
+    required this.validator
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: TextField(
-        keyboardType: TextInputType.emailAddress,
+      child: TextFormField(
+        keyboardType: keyboardType,
         controller: controller,
         obscureText: obscureText,
+        validator: validator, // Assigning the validator function
         decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(21)),
