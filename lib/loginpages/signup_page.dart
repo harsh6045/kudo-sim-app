@@ -5,7 +5,10 @@ import 'package:kudo_sim/Utils/validator_helper.dart';
 import 'package:kudo_sim/components/toast.dart';
 import 'package:kudo_sim/loginpages/resetpass_page.dart';
 import 'package:kudo_sim/loginpages/welcomepage.dart';
+import 'package:kudo_sim/storepages/globalpackagepage.dart';
 import 'package:kudo_sim/storepages/homepage.dart';
+import 'package:kudo_sim/storepages/localpackpages.dart';
+import 'package:kudo_sim/storepages/regionalpackgepage.dart';
 import '../components/my_textfield.dart';
 import '../routes/generated_routes.dart';
 
@@ -45,10 +48,12 @@ class _SignUpPageState extends State<SignUpPage> {
       showToast(message: "Some error occurred");
     }
   }
+
   Future<User?> signInWithGoogle() async {
     try {
       // Trigger Google Sign In
-      final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
 
       if (googleSignInAccount == null) {
         // User canceled Google Sign In
@@ -56,7 +61,8 @@ class _SignUpPageState extends State<SignUpPage> {
       }
 
       // Obtain GoogleSignInAuthentication object
-      final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount.authentication;
 
       // Create GoogleSignInCredential using the obtained authentication
       final OAuthCredential credential = GoogleAuthProvider.credential(
@@ -84,13 +90,12 @@ class _SignUpPageState extends State<SignUpPage> {
 
   final passwordController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/',
       onGenerateRoute: RouteGenerator().generateRoute,
-       home: Scaffold(
+      home: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
           child: SingleChildScrollView(
@@ -119,10 +124,12 @@ class _SignUpPageState extends State<SignUpPage> {
 
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
-                    child: Text("Enjoy fast internet everywhere in the world",
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),),
+                    child: Text(
+                      "Enjoy fast internet everywhere in the world",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
 
                   const SizedBox(height: 40),
@@ -166,16 +173,17 @@ class _SignUpPageState extends State<SignUpPage> {
                           showToast(message: "Welcome to the app.");
                           Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => HomePage()));
+                              MaterialPageRoute(
+                                  builder: (context) => const HomePage()));
                         },
                         child: Container(
-                          margin: const EdgeInsets.only(bottom: 25,top: 25),
+                          margin: const EdgeInsets.only(bottom: 25, top: 25),
                           height: MediaQuery.of(context).size.height * 0.07,
                           decoration: BoxDecoration(
                             color: Colors.deepPurple,
                             borderRadius: BorderRadius.circular(21),
                           ),
-                          child:  Center(
+                          child: Center(
                             child: Text(
                               "Register",
                               style: TextStyle(
@@ -196,18 +204,25 @@ class _SignUpPageState extends State<SignUpPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("I Already have an account? ",style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600
-                      ),),
+                      Text(
+                        "I Already have an account? ",
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.w600),
+                      ),
                       InkWell(
-                        onTap: (){
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WelcomePage(onTap: (){}),));
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WelcomePage(onTap: () {}),
+                              ));
                         },
-                        child: Text("Login",style: TextStyle(
-                          color: Colors.deepPurple,
-                            fontWeight: FontWeight.w600
-                        ),),
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                              color: Colors.deepPurple,
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ],
                   ),
@@ -233,8 +248,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                         InkWell(
-                            onTap: ()   {
-                               _signUpWithGoogle();
+                            onTap: () {
+                              _signUpWithGoogle();
                             },
                             child: Image.asset("assets/images/google.png")),
                         SizedBox(
@@ -246,7 +261,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
 
                   const SizedBox(height: 50),
-
                 ],
               ),
             ),
@@ -256,4 +270,3 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
-

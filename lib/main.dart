@@ -38,24 +38,23 @@ final List<OnBoard> demoData = [
     image: "assets/images/iustration.png",
     title: "Kudo+ 5G Speed",
     description:
-      "Embrace the rapid pace of 5G. Your eSIM unlocks swift and seamless connectivity for an always-on lifestyle.",
+        "Embrace the rapid pace of 5G. Your eSIM unlocks swift and seamless connectivity for an always-on lifestyle.",
   ),
   OnBoard(
     image: "assets/images/iustration(1).png",
     title: "190 Country Global\n     5G Coverage",
     description:
-      "Stay connected with 5G wherever you go. Our eSIM puts the world at your fingertips with broad 5G coverage across the globe.",
+        "Stay connected with 5G wherever you go. Our eSIM puts the world at your fingertips with broad 5G coverage across the globe.",
   ),
   OnBoard(
     image: "assets/images/3d illustration.png",
     title: "Best Rates\nGuaranteed",
     description:
-      "Light up your mobile experience with unbeatable prices. Our eSIM guarantees you the best rates, ensuring you save more with every connection.",
+        "Light up your mobile experience with unbeatable prices. Our eSIM guarantees you the best rates, ensuring you save more with every connection.",
   ),
 ];
 
 class MyApp extends StatelessWidget {
-
 // This widget is the root
 // of your application.
   @override
@@ -72,6 +71,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 // OnBoardingScreen
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -93,8 +93,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     _pageController = PageController(initialPage: 0);
     // Automatic scroll behaviour
     _timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
-
-        _pageIndex = 0;
+      _pageIndex = 0;
 
       _pageController.animateToPage(
         _pageIndex,
@@ -156,7 +155,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 children: [
                   ...List.generate(
                     demoData.length,
-                        (index) => Padding(
+                    (index) => Padding(
                       padding: const EdgeInsets.only(right: 4),
                       child: DotIndicator(
                         isActive: index == _pageIndex,
@@ -172,21 +171,23 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             ),
             // Button area
             InkWell(
-              onTap: () {setState(() {
-                _pageController.animateToPage(
-                  _pageIndex+1,
-                  duration: const Duration(milliseconds: 350),
-                  curve: Curves.easeIn,
-                );
-              });
-              _timer!.cancel();
-              if (_pageIndex == demoData.length - 1) {
-                // Navigate to the second page when on the last page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignUpPage(onTap: (){})),
-                );
-              }
+              onTap: () {
+                setState(() {
+                  _pageController.animateToPage(
+                    _pageIndex + 1,
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeIn,
+                  );
+                });
+                _timer!.cancel();
+                if (_pageIndex == demoData.length - 1) {
+                  // Navigate to the second page when on the last page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SignUpPage(onTap: () {})),
+                  );
+                }
                 print("Button clicked!");
                 print("object  ..$_pageIndex");
               },
@@ -198,10 +199,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   color: Colors.deepPurple,
                   borderRadius: BorderRadius.circular(21),
                 ),
-                child:  Center(
+                child: Center(
                   child: Text(
                     _pageIndex < demoData.length - 1 ? "Next" : "Enter",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: "HappyMonkey",
                       color: Colors.white,
                       fontSize: 18,
@@ -234,7 +235,6 @@ class OnBoardContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-
         const Spacer(),
         Image.asset(image),
         const SizedBox(

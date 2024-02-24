@@ -41,6 +41,7 @@ dependencies:
   google_sign_in: ^6.2.1
   fluttertoast: ^8.2.4
   firebase_core: ^2.25.4
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
