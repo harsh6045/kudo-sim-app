@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kudo_sim/Model/Package.dart';
 import 'package:kudo_sim/storepages/Widgets/local-card.dart';
 
 class LocalPackPages extends StatelessWidget {
-  const LocalPackPages({super.key});
+  List<Package> packages;
+  LocalPackPages({super.key, required this.packages});
 
   @override
   Widget build(BuildContext context) {
@@ -41,15 +43,16 @@ class LocalPackPages extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Expanded(
-              child: ListView(
-                children: const [
-                  LocalCard(),
-                  LocalCard(),
-                  LocalCard(),
-                  LocalCard(),
-                  LocalCard(),
-                ],
-              ),
+              child: ListView.builder(
+                  itemCount: packages.length,
+                  itemBuilder: (context, index) {
+                    return LocalCard(
+                      cityName: packages[index].coverage.toString(),
+                      data: packages[index].size.toString(),
+                      price: packages[index].price.toString(),
+                      validity: packages[index].days.toString(),
+                    );
+                  }),
             ),
           ],
         ),

@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ActivePlan extends StatefulWidget {
-  const ActivePlan({super.key});
-
+  final String cityName;
+  const ActivePlan({super.key, required this.cityName});
   @override
   State<ActivePlan> createState() => _ActivePlanState();
 }
@@ -66,7 +66,7 @@ class _ActivePlanState extends State<ActivePlan> {
                     const SizedBox(
                       height: 100,
                     ),
-                    const Column(
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -78,7 +78,9 @@ class _ActivePlanState extends State<ActivePlan> {
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          "Europe+",
+                          widget.cityName,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                           style: TextStyle(
                               color: Color.fromRGBO(102, 0, 153, 1),
                               fontSize: 60,

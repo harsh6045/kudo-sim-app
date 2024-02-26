@@ -65,7 +65,7 @@ class _AccountInformationState extends State<AccountInformation> {
                     children: [
                       Image.asset(
                         'assets/images/userImage.png',
-                        width: double.maxFinite,
+                        width: 100,
                       ),
                       const SizedBox(
                         width: 20,

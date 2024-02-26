@@ -3,7 +3,16 @@ import 'package:kudo_sim/storepages/Widgets/buy-now.dart';
 import 'package:kudo_sim/storepages/Widgets/round-tile.dart';
 
 class LocalCard extends StatelessWidget {
-  const LocalCard({super.key});
+  final String cityName;
+  final String validity;
+  final String data;
+  final String price;
+  const LocalCard(
+      {super.key,
+      required this.cityName,
+      required this.validity,
+      required this.data,
+      required this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +35,7 @@ class LocalCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Row(
+                  Row(
                     children: [
                       Text(
                         "Coverage : ",
@@ -36,7 +45,7 @@ class LocalCard extends StatelessWidget {
                             color: Colors.white),
                       ),
                       Text(
-                        "127 countries ",
+                        cityName,
                         style: TextStyle(
                             fontFamily: 'Poppins',
                             fontSize: 14,
@@ -65,8 +74,8 @@ class LocalCard extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const Text(
-                            "Germany",
+                          Text(
+                            cityName,
                             style: TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 28,
@@ -79,7 +88,7 @@ class LocalCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            "12.99/ €",
+                            price + "/ €",
                             style: TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 18,
@@ -87,7 +96,7 @@ class LocalCard extends StatelessWidget {
                                 color: Colors.white),
                           ),
                           Text(
-                            "30 Days ",
+                            validity,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 14,
@@ -101,8 +110,8 @@ class LocalCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "3GB ",
+                      Text(
+                        data,
                         style: TextStyle(
                             fontFamily: 'Poppins',
                             fontSize: 18,

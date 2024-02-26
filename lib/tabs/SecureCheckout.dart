@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kudo_sim/tabs/PaymentCompleted.dart';
 import 'package:kudo_sim/tabs/PaymentDeclined.dart';
+import 'package:kudo_sim/tabs/QRCode.dart';
 
 class SecureCheckout extends StatefulWidget {
   const SecureCheckout({super.key});
@@ -30,10 +31,15 @@ class _SecureCheckoutState extends State<SecureCheckout> {
                     Transform.rotate(
                       angle:
                           pi, // Rotate the icon by 90 degrees clockwise (pi/2 radians)
-                      child: const Icon(
-                        Icons.arrow_right_alt_rounded,
-                        size: 30,
-                        color: Color.fromRGBO(112, 0, 255, 1),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(
+                          Icons.arrow_right_alt_rounded,
+                          size: 30,
+                          color: Color.fromRGBO(112, 0, 255, 1),
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -272,19 +278,27 @@ class _SecureCheckoutState extends State<SecureCheckout> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: 70,
-                      height: 48,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 1.0,
-                              color: Color.fromRGBO(217, 217, 217, 1)),
-                          borderRadius: BorderRadius.circular(6)),
-                      child: Padding(
-                        padding: EdgeInsets.all(5),
-                        child: SvgPicture.asset(
-                          'assets/images/Mastercard.svg', // Your SVG file path here
-                          fit: BoxFit.contain,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => (QRCodeInstallation())));
+                      },
+                      child: Container(
+                        width: 70,
+                        height: 48,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 1.0,
+                                color: Color.fromRGBO(217, 217, 217, 1)),
+                            borderRadius: BorderRadius.circular(6)),
+                        child: Padding(
+                          padding: EdgeInsets.all(5),
+                          child: SvgPicture.asset(
+                            'assets/images/Mastercard.svg', // Your SVG file path here
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
                     ),
@@ -359,7 +373,7 @@ class _SecureCheckoutState extends State<SecureCheckout> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => PaymentDeclined()));
+                            builder: (context) => PaymentCompleted()));
                   },
                   child: Container(
                     height: 43,

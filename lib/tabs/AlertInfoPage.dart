@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class AlertInfoPage extends StatefulWidget {
   @override
@@ -21,7 +24,20 @@ class _AlertInfoPageState extends State<AlertInfoPage> {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.arrow_back_outlined),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Transform.rotate(
+                        angle:
+                            pi, // Rotate the icon by 90 degrees clockwise (pi/2 radians)
+                        child: const Icon(
+                          Icons.arrow_right_alt_rounded,
+                          size: 30,
+                          color: Color.fromRGBO(112, 0, 255, 1),
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       width: 125,
                     ),

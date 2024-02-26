@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kudo_sim/tabs/homeTab.dart';
 import '../storepages/homepage.dart';
 
 class RouteGenerator {
@@ -11,7 +12,7 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => BlocProvider<LandingPageBloc>.value(
             value: landingPageBloc,
-            child: const HomePage(),
+            child: const HomeTab(),
           ),
         );
       default:

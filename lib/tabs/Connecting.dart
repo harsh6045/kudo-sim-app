@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Connecting extends StatefulWidget {
@@ -22,13 +23,18 @@ class _ConnectingState extends State<Connecting> {
               children: [
                 Row(
                   children: [
-                    Transform.rotate(
-                      angle:
-                          pi, // Rotate the icon by 90 degrees clockwise (pi/2 radians)
-                      child: const Icon(
-                        Icons.arrow_right_alt_rounded,
-                        size: 30,
-                        color: Color.fromRGBO(112, 0, 255, 1),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Transform.rotate(
+                        angle:
+                            pi, // Rotate the icon by 90 degrees clockwise (pi/2 radians)
+                        child: const Icon(
+                          Icons.arrow_right_alt_rounded,
+                          size: 30,
+                          color: Color.fromRGBO(112, 0, 255, 1),
+                        ),
                       ),
                     ),
                     const SizedBox(

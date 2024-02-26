@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:kudo_sim/Model/Package.dart';
 import 'package:kudo_sim/storepages/Widgets/Global-card.dart';
 import 'package:kudo_sim/storepages/regionalpackgepage.dart';
 
 class GlobalPackage extends StatelessWidget {
-  const GlobalPackage({super.key});
+  List<Package> packages;
+
+  GlobalPackage({super.key, required this.packages});
+  TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _searchController = TextEditingController();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -43,25 +45,17 @@ class GlobalPackage extends StatelessWidget {
             ),
             const SizedBox(
                 height: 20), // Add some spacing between search bar and list
-            Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const RegionalPackage()));
-                },
-                child: ListView(
-                  children: const [
-                    GlobalCard(),
-                    GlobalCard(),
-                    GlobalCard(),
-                    GlobalCard(),
-                    GlobalCard(),
-                  ],
-                ),
-              ),
-            ),
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: packages.length,
+                itemBuilder: (context, index) {
+                  return GlobalCard(
+                    cityName: packages[index].coverage.toString(),
+                    data: packages[index].size.toString(),
+                    price: packages[index].price.toString(),
+                    validity: packages[index].days.toString(),
+                  );
+                }),
           ],
         ),
       ),

@@ -1,9 +1,22 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:kudo_sim/storepages/Widgets/buy-now.dart';
 import 'package:kudo_sim/storepages/Widgets/round-tile.dart';
+import 'package:kudo_sim/storepages/localpackpages.dart';
+import 'package:kudo_sim/tabs/SecureCheckout.dart';
 
 class GlobalCard extends StatelessWidget {
-  const GlobalCard({super.key});
+  final String cityName;
+  final String validity;
+  final String data;
+  final String price;
+  GlobalCard(
+      {super.key,
+      required this.cityName,
+      required this.validity,
+      required this.data,
+      required this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +34,7 @@ class GlobalCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Row(
+                  Row(
                     children: [
                       Text(
                         "Coverage : ",
@@ -31,7 +44,7 @@ class GlobalCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "127 countries ",
+                        cityName,
                         style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 14,
@@ -39,11 +52,13 @@ class GlobalCard extends StatelessWidget {
                       )
                     ],
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Worldwide ",
+                        cityName + " ",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                         style: TextStyle(
                             fontFamily: 'Poppins',
                             fontSize: 24,
@@ -53,14 +68,14 @@ class GlobalCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "12.99/ €",
+                            price + "/ €",
                             style: TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600),
                           ),
                           Text(
-                            "30 Days ",
+                            validity,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 14,
@@ -74,8 +89,8 @@ class GlobalCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "3GB ",
+                      Text(
+                        data,
                         style: TextStyle(
                             fontFamily: 'Poppins',
                             fontSize: 18,
@@ -88,7 +103,7 @@ class GlobalCard extends StatelessWidget {
                       )
                     ],
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
@@ -98,7 +113,15 @@ class GlobalCard extends StatelessWidget {
                           RoundTile(imagePath: 'assets/images/Group (1).png'),
                         ],
                       ),
-                      BuyNowButton()
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SecureCheckout(),
+                                ));
+                          },
+                          child: BuyNowButton())
                     ],
                   ),
                 ],

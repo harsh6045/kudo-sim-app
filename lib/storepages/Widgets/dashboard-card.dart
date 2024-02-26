@@ -1,12 +1,23 @@
 // ignore: file_names
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:kudo_sim/storepages/Widgets/topUp-button.dart';
 
 class DashboardCard extends StatelessWidget {
+  final int id;
   final String cityName;
   final String path;
-  const DashboardCard({super.key, required this.cityName, required this.path});
+  final String validity;
+  final String data;
+  const DashboardCard(
+      {super.key,
+      required this.cityName,
+      required this.path,
+      required this.id,
+      required this.validity,
+      required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -40,20 +51,22 @@ class DashboardCard extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: Colors.transparent,
                             borderRadius: BorderRadius.circular(50)),
-                        child: Image.asset(
+                        child: SvgPicture.network(
                           path,
                           height: 60,
                           width: 60,
                         ),
                       ),
                     ),
-                    Text(
-                      cityName,
-                      style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                    Expanded(
+                      child: Text(cityName,
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1),
                     )
                   ],
                 ),
@@ -65,18 +78,18 @@ class DashboardCard extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Poppins',
-                        fontSize: 16,
+                        fontSize: 12,
                         fontWeight: FontWeight.w300,
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(right: 8),
                       child: Text(
-                        " 12345678910111",
+                        id.toString(),
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Poppins',
-                          fontSize: 16,
+                          fontSize: 12,
                           fontWeight: FontWeight.w300,
                         ),
                       ),
@@ -91,7 +104,7 @@ class DashboardCard extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Poppins',
-                        fontSize: 16,
+                        fontSize: 12,
                         fontWeight: FontWeight.w300,
                       ),
                     ),
@@ -102,14 +115,14 @@ class DashboardCard extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Poppins',
-                          fontSize: 16,
+                          fontSize: 12,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                   ],
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Top_up_Button(),
@@ -127,7 +140,7 @@ class DashboardCard extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(right: 8),
                           child: Text(
-                            " 3 Days",
+                            validity,
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'Poppins',
@@ -142,7 +155,7 @@ class DashboardCard extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
@@ -155,7 +168,7 @@ class DashboardCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        " 2.97GB",
+                        data,
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Poppins',

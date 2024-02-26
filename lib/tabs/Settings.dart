@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:kudo_sim/tabs/Connecting.dart';
+import 'package:kudo_sim/tabs/ESimStore.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -24,13 +26,18 @@ class _SettingsState extends State<Settings> {
               children: [
                 Row(
                   children: [
-                    Transform.rotate(
-                      angle:
-                          pi, // Rotate the icon by 90 degrees clockwise (pi/2 radians)
-                      child: const Icon(
-                        Icons.arrow_right_alt_rounded,
-                        size: 30,
-                        color: Color.fromRGBO(112, 0, 255, 1),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Transform.rotate(
+                        angle:
+                            pi, // Rotate the icon by 90 degrees clockwise (pi/2 radians)
+                        child: const Icon(
+                          Icons.arrow_right_alt_rounded,
+                          size: 30,
+                          color: Color.fromRGBO(112, 0, 255, 1),
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -167,7 +174,7 @@ class _SettingsState extends State<Settings> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Connecting()));
+                                  builder: (context) => ESimStore()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:kudo_sim/Model/Package.dart';
 import 'package:kudo_sim/storepages/Widgets/Regional-card.dart';
 import 'package:kudo_sim/storepages/localpackpages.dart';
 
 class RegionalPackage extends StatelessWidget {
-  const RegionalPackage({super.key});
+  List<Package> packages;
+  RegionalPackage({super.key, required this.packages});
 
   @override
   Widget build(BuildContext context) {
@@ -42,23 +44,16 @@ class RegionalPackage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LocalPackPages()));
-                },
-                child: ListView(
-                  children: const [
-                    RegionalCard(),
-                    RegionalCard(),
-                    RegionalCard(),
-                    RegionalCard(),
-                    RegionalCard(),
-                  ],
-                ),
-              ),
+              child: ListView.builder(
+                  itemCount: packages.length,
+                  itemBuilder: (context, index) {
+                    return RegionalCard(
+                      cityName: packages[index].coverage.toString(),
+                      data: packages[index].size.toString(),
+                      price: packages[index].price.toString(),
+                      validity: packages[index].days.toString(),
+                    );
+                  }),
             ),
           ],
         ),

@@ -10,8 +10,8 @@ class RoundTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Container(
-        width: 45,
-        height: 45,
+        width: 35,
+        height: 35,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
           image: const DecorationImage(

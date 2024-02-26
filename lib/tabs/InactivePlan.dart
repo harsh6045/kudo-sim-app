@@ -1,10 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kudo_sim/Model/Package.dart';
+import 'package:kudo_sim/storepages/globalpackagepage.dart';
+import 'package:kudo_sim/tabs/SecureCheckout.dart';
 
 class InactivePlan extends StatefulWidget {
   final String cityName;
+  final List<Package> package;
 
-  const InactivePlan({Key? key, required this.cityName}) : super(key: key);
+  const InactivePlan({Key? key, required this.cityName, required this.package}) : super(key: key);
 
   @override
   State<InactivePlan> createState() => _InactivePlanState();
@@ -81,6 +86,8 @@ class _InactivePlanState extends State<InactivePlan> {
                         ),
                         Text(
                           widget.cityName,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                           style: TextStyle(
                               color: Color.fromRGBO(42, 48, 56, 1),
                               fontSize: 60,
@@ -98,38 +105,47 @@ class _InactivePlanState extends State<InactivePlan> {
                       ],
                     ),
                     Spacer(),
-                    Container(
-                      height: 43,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(32.5),
-                        gradient: const LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [
-                            Color.fromRGBO(49, 11, 232, 1),
-                            Color.fromRGBO(0, 39, 254, 1),
-                            Color.fromRGBO(130, 0, 255, 1),
-                            Color.fromRGBO(215, 3, 255, 1),
-                          ], // Define your gradient colors
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/images/btn-icon-inactive.svg', // Your SVG file path here
-                            fit: BoxFit.cover,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => GlobalPackage(packages: widget.package,),
+                            ));
+                      },
+                      child: Container(
+                        height: 43,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(32.5),
+                          gradient: const LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Color.fromRGBO(49, 11, 232, 1),
+                              Color.fromRGBO(0, 39, 254, 1),
+                              Color.fromRGBO(130, 0, 255, 1),
+                              Color.fromRGBO(215, 3, 255, 1),
+                            ], // Define your gradient colors
                           ),
-                          Text(
-                            " Top Up Now",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'poppins',
-                                fontWeight: FontWeight.bold),
-                          )
-                        ],
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/images/btn-icon-inactive.svg', // Your SVG file path here
+                              fit: BoxFit.cover,
+                            ),
+                            Text(
+                              " Top Up Now",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontFamily: 'poppins',
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
                       ),
                     )
                   ],

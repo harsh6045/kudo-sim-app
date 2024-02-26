@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:kudo_sim/Model/Package.dart';
 import 'package:kudo_sim/storepages/Widgets/regional-buy-now.dart';
 import 'package:kudo_sim/storepages/Widgets/round-tile.dart';
+import 'package:kudo_sim/tabs/SecureCheckout.dart';
 
 class RegionalCard extends StatelessWidget {
-  const RegionalCard({super.key});
+  final String cityName;
+  final String validity;
+  final String data;
+  final String price;
+  RegionalCard(
+      {super.key,
+      required this.cityName,
+      required this.validity,
+      required this.data,
+      required this.price});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(0.0),
       child: Container(
-        height: 190,
+        height: 170,
         width: 200,
         decoration: const BoxDecoration(
             color: Colors.transparent,
@@ -30,7 +42,7 @@ class RegionalCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Row(
+                  Row(
                     children: [
                       Text(
                         "Coverage : ",
@@ -40,7 +52,7 @@ class RegionalCard extends StatelessWidget {
                             color: Colors.white),
                       ),
                       Text(
-                        "127 countries ",
+                        cityName,
                         style: TextStyle(
                             fontFamily: 'Poppins',
                             fontSize: 14,
@@ -62,16 +74,16 @@ class RegionalCard extends StatelessWidget {
                                   color: Colors.transparent,
                                   borderRadius: BorderRadius.circular(50)),
                               child: Image.asset(
-                                'assets/images/france 1.png',
+                                'assets/images/european union (1).png',
                                 height: 40,
                                 width: 40,
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
-                          const Text(
-                            "France",
-                            style: TextStyle(
+                          Text(
+                            cityName,
+                            style: const TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
@@ -83,7 +95,7 @@ class RegionalCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            "12.99/ €",
+                            price + "/ €",
                             style: TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 18,
@@ -91,7 +103,7 @@ class RegionalCard extends StatelessWidget {
                                 color: Colors.white),
                           ),
                           Text(
-                            "30 Days ",
+                            validity,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 14,
@@ -105,8 +117,8 @@ class RegionalCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "3GB ",
+                      Text(
+                        data,
                         style: TextStyle(
                             fontFamily: 'Poppins',
                             fontSize: 18,
@@ -120,7 +132,7 @@ class RegionalCard extends StatelessWidget {
                       )
                     ],
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
@@ -130,7 +142,14 @@ class RegionalCard extends StatelessWidget {
                           RoundTile(imagePath: 'assets/images/Group (1).png'),
                         ],
                       ),
-                      RegionalBuyNow()
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SecureCheckout()));
+                          },
+                          child: RegionalBuyNow())
                     ],
                   ),
                 ],

@@ -123,46 +123,6 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 0),
-                child: ListView(
-                  children: [
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ActivePlan()));
-                        },
-                        child: DashboardCard(
-                          cityName: 'Europe',
-                          path: 'assets/images/european union (1).png',
-                        )),
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => InactivePlan(
-                                        cityName: 'France',
-                                      )));
-                        },
-                        child: DashboardCard(
-                          cityName: 'France',
-                          path: 'assets/images/france 1 (1).png',
-                        )), // Add more DashboardCard widgets as needed
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      InactivePlan(cityName: "Germany")));
-                        },
-                        child: DashboardCard(
-                          cityName: 'Germany',
-                          path: 'assets/images/germany(1) 1.png',
-                        )),
-                  ],
-                ),
               ),
             ),
           ],
@@ -195,7 +155,8 @@ class HomePage extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-          ),*/Padding(
+          ),*/
+              Padding(
             padding: const EdgeInsets.all(20.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(24),
@@ -204,13 +165,15 @@ class HomePage extends StatelessWidget {
                 items: bottomNavItems,
                 currentIndex: state.tabIndex,
                 selectedItemColor: Colors.grey, // Change selected item color
-                unselectedItemColor: Colors.white, // Change unselected item color
+                unselectedItemColor:
+                    Colors.white, // Change unselected item color
                 onTap: (index) {
                   BlocProvider.of<LandingPageBloc>(context)
                       .add(TabChange(tabIndex: index));
                 },
                 elevation: 5,
-                backgroundColor: Colors.deepPurple, // Set the background color to deep purple
+                backgroundColor: Colors
+                    .deepPurple, // Set the background color to deep purple
               ),
             ),
           ),
